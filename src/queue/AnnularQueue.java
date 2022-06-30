@@ -8,7 +8,7 @@ package queue;
  * 队列为满的情况：1.头指针和尾指针距离相差一位，需要预留一个空间作为运算条件 2.添加数据时头指针和尾指针想遇 因为头指针移动代表数据被添加
  * 队列为空的情况：1.头指针和尾指针相等 2.获取数据时头指针和尾指针想遇，因为尾指针移动代表数据被获取
  */
-public class AnnularQueue<E> {
+public class AnnularQueue<E> extends ParentQueue<E>{
     public static void main(String[] args) {
         AnnularQueue<Integer> queue = new AnnularQueue<>(3);
         queue.add(1);
@@ -19,16 +19,8 @@ public class AnnularQueue<E> {
         System.out.println(queue.isEmpty());
     }
 
-    private final int maxSize;//最大容量
-    private int front;//头
-    private int rear;//尾
-    private final E[] arr;//用于存放数据，模拟队列
-
     public AnnularQueue(int caps) {
-        arr = (E[]) new Object[caps];
-        front = 0;
-        rear = 0;
-        maxSize = caps;
+        super(caps);
     }
 
     public boolean isEmpty() {
